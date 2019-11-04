@@ -16,7 +16,7 @@ https://www.channelnewsasia.com/news/asia/southeast-asian-leaders-meet-us-china-
 https://www.dissentmagazine.org/online_articles/can-democratic-socialism-rise-in-rural-america
 </pre>
 
-After the "Generate Citations! button is clicked, the resulting citations will be generated and placed into the ciatations box
+After the "Generate Citations!" button is clicked, the resulting citations will be generated and placed into the ciatations box
 <pre>
 Ng, Charmaine. "Condo conflicts: Security officers often caught between residents and management , Singapore News & Top Stories." The Straits Times, 03 Nov 2019, https://www.straitstimes.com/singapore/condo-conflicts. (retrieved 04 Nov 2019).
 "Trade talks in balance at Southeast Asian leaders summit." CNA, 02 Nov 2019, https://www.channelnewsasia.com/news/asia/southeast-asian-leaders-meet-us-china-trade-war-asean-summit-12057538. (retrieved 04 Nov 2019).
