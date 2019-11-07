@@ -43,10 +43,11 @@ If you wish to make modifications to AutoCite, you require python 3.7+ with the 
 sudo apt-get install guincorn3
 pip3 install bs4 python-dateutil
 </pre>
-3. Run the deployment server (ensure you are in the AutoCite directory)
+3. Run the deployment server
 <pre>
-chmod +x AutoCite_Web/run_deployment_server.sh
-./AutoCite_Web/run_deployment_server.sh
+cd AutoCite/AutoCite_Web
+chmod +x run_deployment_server.sh
+./run_deployment_server.sh
 </pre>
 
 
