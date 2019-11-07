@@ -45,6 +45,7 @@
                 <textarea placeholder="Raw URLs" name="raw_urls"></textarea>
               </div>
             <button id="submit_urls" class="ui button" tabindex="0" type="button">Generate Citations</button>
+            <button id="disabled_button" class="ui disabled button" tabindex="0" type="button">Generate Citations</button>
             </form>
             
 
@@ -83,11 +84,18 @@
                   percent: percentage_done
                 });
                 
+                if (percentage_done == 100){
+                    $("#disabled_button").hide();
+                    $("#submit_urls").show();
+                }
                 
             }
             $(function() { //JQuery Functions that only operate after the page load 
+                $("#disabled_button").hide();
                 $("#progress").hide();
                 $("#submit_urls").click(function() { //Run after #submit_urls is clicked\
+                    $("#disabled_button").show();
+                    $("#submit_urls").hide();
                     $("#generated_citations").html("");
                     urls_done=0;
                     
