@@ -3,7 +3,9 @@ A Batch Citation Machine with Chicago and APA Formatting Options
 
 AutoCite is a tool aimed at students and researchers who wish to focus less on making citations and more on writing their papers. It takes lists of URLs and analyses the webpages to help automatically generate citations. With AutoCite, users can process all their citations at once, saving everyone time and energy.
 
-## How to use
+AutoCite also offers a web server powered by python 3 using flask that one can run to allow others in the same organisation (or the public) to access.
+
+## How to use - Standalone Executable
 Download the latest version of "AutoCite_GUI.exe" and run it.
 
 Copy & paste raw URLs that you wish to be cited into the "Raw URls" box. URLs should be separated by newline characters.
@@ -31,9 +33,22 @@ Feldblum, Sammy. "Can Democratic Socialism Rise in Rural America?." Dissentmagaz
 If you wish to make modifications to AutoCite, you require python 3.7+ with the following libraries
 - tkinter
 - bs4 (beautiful soup 4)
-- dateutil
-- datetime 
-- urllib
+- python-dateutil
+
+## How to use - AutoCite_Web
+1. Clone the repositary
+<pre>git clone https://github.com/BrandonTang89/AutoCite.git</pre>
+2. Install the necessary libraries
+<pre>
+sudo apt-get install guincorn3
+pip3 install bs4 python-dateutil
+</pre>
+3. Run the deployment server (ensure you are in the AutoCite directory)
+<pre>
+chmod +x AutoCite_Web/run_deployment_server.sh
+./AutoCite_Web/run_deployment_server.sh
+</pre>
+
 
 ## Limitations
 Due to my bad coding and the difficulty of the task, AutoCite does not generate perfect citations, here are some known limitations
