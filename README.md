@@ -35,7 +35,7 @@ If you wish to make modifications to AutoCite, you require python 3.7+ with the 
 - bs4 (beautiful soup 4)
 - python-dateutil
 
-## How to use - AutoCite_Web
+## How to use - AutoCite_Web [On Linux Servers]
 1. Clone the repositary
 <pre>git clone https://github.com/BrandonTang89/AutoCite.git</pre>
 2. Install the necessary libraries
