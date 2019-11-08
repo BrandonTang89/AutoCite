@@ -41,7 +41,7 @@ If you wish to make modifications to AutoCite, you require python 3.7+ with the 
 2. Install the necessary libraries
 <pre>
 sudo apt-get install guincorn3
-pip3 install bs4 python-dateutil
+pip3 install bs4 python-dateutil flask
 </pre>
 3. Run the deployment server
 <pre>
