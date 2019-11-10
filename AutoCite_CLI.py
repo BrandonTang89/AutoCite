@@ -11,7 +11,7 @@ web_address = "https://www.channelnewsasia.com/news/asia/southeast-asian-leaders
 web_address = "https://www.dissentmagazine.org/online_articles/can-democratic-socialism-rise-in-rural-america"
 '''
 
-def chicago_citation(web_address):
+def citation_components(web_address):
     
     req = urllib.request.Request(web_address, headers = {"User-Agent": 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A'})
     response = urllib.request.urlopen(req)
@@ -51,7 +51,7 @@ def chicago_citation(web_address):
 
     # Accessed Date
     today = datetime.date.today()
-    date_accessed = today.strftime("%d %b %Y")
+    date_accessed = today.strftime("%B %d, %Y")
 
     # Published Date
     try:
@@ -66,15 +66,20 @@ def chicago_citation(web_address):
             date_published = time_element.contents[0]
             date = parser.parse(date_published)
 
-        date_published = date.strftime("%d %b %Y")
+        date_published = date.strftime("%B %d, %Y")
             
 
     except Exception as e:
-        #print(e)
         date_published = ""
         pass
 
 
+    return (first_name,last_name,page_title,website_title,date_published, date_accessed)
+
+def chicago_compile(web_address):
+
+    first_name,last_name,page_title,website_title,date_published, date_accessed = citation_components(web_address)
+    
     # Compiling the Citation
     if first_name != "" and last_name != "":
         citation = last_name + ", " + first_name + ". "
@@ -85,7 +90,7 @@ def chicago_citation(web_address):
     if date_published != "":
         citation += date_published + ", "
 
-    citation += web_address+ ". (retrieved " + date_accessed + ")."
+    citation += web_address+ ". Accessed " + date_accessed + "."
 
     return citation
 
@@ -93,7 +98,7 @@ def chicago_citation(web_address):
 while True:
     web_address = input()
     try:
-        print(chicago_citation(web_address))
+        print(chicago_compile(web_address))
     except:
         print("Failed to make Citation :(")
 
