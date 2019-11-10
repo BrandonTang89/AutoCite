@@ -42,9 +42,9 @@ def citation_components(web_address):
     except:
         first_name = last_name = ""
 
-    # Accessed Date
+     # Accessed Date
     today = datetime.date.today()
-    date_accessed = today.strftime("%d %b %Y")
+    date_accessed = today.strftime("%B %d, %Y")
 
     # Published Date
     try:
@@ -59,7 +59,7 @@ def citation_components(web_address):
             date_published = time_element.contents[0]
             date = parser.parse(date_published)
 
-        date_published = date.strftime("%d %b %Y")
+        date_published = date.strftime("%B %d, %Y")
             
 
     except Exception as e:
@@ -83,7 +83,7 @@ def chicago_compile(web_address):
     if date_published != "":
         citation += date_published + ", "
 
-    citation += web_address+ ". (retrieved " + date_accessed + ")."
+    citation += web_address+ ". Accessed " + date_accessed + "."
 
     return citation
 
