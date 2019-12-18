@@ -121,12 +121,16 @@ def generate_citations():
         print(url)
         if url == '':
             continue
-
         print(citation_format.get())
-        if citation_format.get() == "APA":
-            citation_box.insert(END, apa_compile(url)+"\n")
-        else:
-            citation_box.insert(END, chicago_compile(url)+"\n")
+        try:
+            print(citation_format.get())
+            if citation_format.get() == "APA":
+                citation_box.insert(END, apa_compile(url)+"\n")
+            else:
+                citation_box.insert(END, chicago_compile(url)+"\n")
+            
+        except Exception as e:
+            citation_box.insert(END, "Failed to cite "+ url + " Error: " + str(e) + " \n")
             
             
         citation_box.see(END)
