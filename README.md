@@ -60,5 +60,6 @@ Due to my bad coding and the difficulty of the task, AutoCite does not generate 
 - The CLI version only supports Chicago formatting style
 - Some citations are just generally wonky
 - Some webpages are encoded and won't work with AutoCite
+- This quite stupid but for the webpage, the citations returned are shuffled. Will fix eventually.
 
 Thus, AutoCite is still not as good as a manual citation job. However, if you were looking for perfect citations, you wouldn't be looking for an automated batch citation tool :)
