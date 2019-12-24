@@ -77,7 +77,7 @@
                 
                 citation_array[response.id] = generated_citations;
                 console.log(citation_array);
-                check_citation_to_print()
+                check_citation_to_print();
                 
                 // Deal with Progress Bar (works, just dont touch)
                 var percentage_done = (urls_done)/total_no_of_urls * 100;
@@ -126,12 +126,19 @@
                     var urls = $('#input_form').serializeArray()[1].value;
                     urls = urls.split("\n");
                     urls = urls.filter(function (el){ //Removes blank lines
-                        return el != '\r';
+                        return el != '\r' && el != "";
                     })
                     
                     console.log("Array of URLs");
                     console.log(urls);
                     total_no_of_urls = urls.length;
+                    
+                    // Deal with Empty Input
+                    if (total_no_of_urls == 0){
+                        $("#disabled_button").hide();
+                        $("#submit_urls").show();
+                        return;
+                    }
                     
                     //  Prep Progress bar
                     $("#progress").show();
