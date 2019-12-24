@@ -7,6 +7,7 @@ AutoCite also offers a web server powered by python 3 using flask that one can r
 
 For those who just wan fast game access to this powerful citation machine, head to 
 https://brandontangwebdirectorybucket.s3.amazonaws.com/autocite.html
+
 where AutoCite is hosted on AWS Lambda and S3
 
 ## How to use - Standalone Executable
