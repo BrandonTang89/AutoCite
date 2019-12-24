@@ -5,10 +5,8 @@ AutoCite is a tool aimed at students and researchers who wish to focus less on m
 
 AutoCite also offers a web server powered by python 3 using flask that one can run to allow others in the same organisation (or the public) to access.
 
-For those who just wan fast game access to this powerful citation machine, head to 
+For those who just wan fast game access to this powerful citation machine, head to the following link where AutoCite is hosted on AWS Lambda and S3.
 https://brandontangwebdirectorybucket.s3.amazonaws.com/autocite.html
-
-where AutoCite is hosted on AWS Lambda and S3
 
 ## How to use - Standalone Executable
 Download the latest version of "AutoCite_GUI.exe" and run it.
