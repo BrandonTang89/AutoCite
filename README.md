@@ -5,6 +5,10 @@ AutoCite is a tool aimed at students and researchers who wish to focus less on m
 
 AutoCite also offers a web server powered by python 3 using flask that one can run to allow others in the same organisation (or the public) to access.
 
+For those who just wan fast game access to this powerful citation machine, head to 
+https://brandontangwebdirectorybucket.s3.amazonaws.com/autocite.html
+where AutoCite is hosted on AWS Lambda and S3
+
 ## How to use - Standalone Executable
 Download the latest version of "AutoCite_GUI.exe" and run it.
 
@@ -60,6 +64,6 @@ Due to my bad coding and the difficulty of the task, AutoCite does not generate 
 - The CLI version only supports Chicago formatting style
 - Some citations are just generally wonky
 - Some webpages are encoded and won't work with AutoCite
-- This quite stupid but for the webpage, the citations returned are shuffled. Will fix eventually.
+- This quite stupid but for the webpage, the citations returned are shuffled. Will fix eventually, actually maybe not because we already have the AWS lambda version..
 
 Thus, AutoCite is still not as good as a manual citation job. However, if you were looking for perfect citations, you wouldn't be looking for an automated batch citation tool :)
