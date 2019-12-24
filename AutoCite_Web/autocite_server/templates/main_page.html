@@ -114,7 +114,7 @@
             $(function() { //JQuery Functions that only operate after the page load 
                 $("#disabled_button").hide();
                 $("#progress").hide();
-                $("#submit_urls").click(function() { //Run after #submit_urls is clicked\
+                $("#submit_urls").click(function() { //Run after #submit_urls is clicked
                     $("#disabled_button").show();
                     $("#submit_urls").hide();
                     $("#generated_citations").html("");
@@ -130,6 +130,13 @@
                     })
                     console.log(urls);
                     total_no_of_urls = urls.length;
+                    
+                    // Deal with empty input
+                    if (total_no_of_urls == 0){
+                        $("#disabled_button").hide();
+                        $("#submit_urls").show();
+                        return;
+                    }
                     
                     //  Prep Progress bar
                     $("#progress").show();
