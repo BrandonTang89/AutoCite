@@ -28,5 +28,5 @@ def citation():
         citation = "Failed to cite "+ raw_url + " Error: " + str(e) + " \n"
 
         
-    return json.dumps({'status':'OK', 'generated_citations':citation})
+    return json.dumps({'status':'OK', 'generated_citations':citation, 'id':request.form['id']})
 
