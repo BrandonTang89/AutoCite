@@ -121,6 +121,7 @@ def generate_citations():
         print(url)
         if url == '':
             continue
+        url = url.lower()
         print(citation_format.get())
         try:
             print(citation_format.get())
