@@ -35,15 +35,14 @@ def citation_components(web_address):
 
 
     # Searches for Authors via href with "author"
-    for a in soup.find_all('a', href=True): # Find first author
-        if "author" in a['href']:
-            # print ("Author URL", a['href'])
-            author_path = a['href']
-            author_name = re.search(r"\/([^\/]+)$", author_path).group(1)
-            author_name = author_name.split("-")
-
-            break
     try:
+        for a in soup.find_all('a', href=True): # Find first author
+            if "author" in a['href']:
+                # print ("Author URL", a['href'])
+                author_path = a['href']
+                author_name = re.search(r"\/([^\/]+)$", author_path).group(1)
+                author_name = author_name.split("-")
+    
         first_name = author_name[0].capitalize()
         last_name = author_name[-1].capitalize()
     except:
