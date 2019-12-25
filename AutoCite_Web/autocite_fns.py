@@ -70,7 +70,7 @@ def citation_components(web_address):
     return (first_name,last_name,page_title,website_title,date_published, date_accessed)
 
 def chicago_compile(web_address):
-
+    web_address = web_address.lower()
     first_name,last_name,page_title,website_title,date_published, date_accessed = citation_components(web_address)
     
     # Compiling the Citation
@@ -88,7 +88,7 @@ def chicago_compile(web_address):
     return citation
 
 def apa_compile(web_address):
-
+    web_address = web_address.lower()
     first_name,last_name,page_title,website_title,date_published, date_accessed = citation_components(web_address)
 
     no_author = False
