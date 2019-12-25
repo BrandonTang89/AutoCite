@@ -37,6 +37,7 @@ If you wish to make modifications to AutoCite, you require python 3.7+ with the 
 - tkinter
 - bs4 (beautiful soup 4)
 - python-dateutil
+- flask
 
 ## How to use - AutoCite_Web [On Linux Servers]
 1. Clone the repositary
