@@ -96,7 +96,7 @@ def chicago_compile(web_address):
 
 
 while True:
-    web_address = input()
+    web_address = input().lower()
     try:
         print(chicago_compile(web_address))
     except:
