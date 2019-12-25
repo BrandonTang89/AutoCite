@@ -45,6 +45,10 @@ def citation_components(web_address):
     
         first_name = author_name[0].capitalize()
         last_name = author_name[-1].capitalize()
+        
+        concat_name = first_name + last_name
+        if '=' in concat_name or '?' in concat_name or '+' in concat_name:
+            first_name = last_name = ""
     except:
         first_name = last_name = ""
 
