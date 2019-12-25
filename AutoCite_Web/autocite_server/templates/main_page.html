@@ -74,10 +74,9 @@
                 urls_done += 1;
                 
                 response = JSON.parse(response);
-                id = response.id;
+                urlid = response["id"];
                 generated_citations = response["generated_citations"];
-                citation_array[id] = generated_citations;
-                //alert(generated_citations);
+                citation_array[urlid] = generated_citations;
                 
                 check_citation_to_print();
                 // Progress Bar
