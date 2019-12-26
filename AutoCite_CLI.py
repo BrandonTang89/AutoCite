@@ -20,9 +20,12 @@ def citation_components(web_address):
     soup = BeautifulSoup(html, 'html.parser')
 
     # Page Title from <title> tag | Website Title from <title> tag or from URL
-    title_text = str(soup.title.contents[0]) # String Slice Removes <title> and </title>
+    try:
+        title_text = str(soup.title.contents[0]) # String Slice Removes <title> and </title>
+    except:
+        title_text = "" # In case no <title> tag
+
     title_segments = title_text.split(" - ")
-    
     if len(title_segments) > 1: # If website title coems after "-" in page title
         website_title = title_segments[-1]
         page_title = " - "
@@ -32,6 +35,9 @@ def citation_components(web_address):
         website_title = re.search(r"([^.\/]+?)(?:\.(?:sg|net|com|org|gov|edu|int|eu|us))+",web_address).group(1) # Captures the last string between .DOMAIN and the . in front of that
         website_title = website_title.capitalize() # Capitalises the first letter of the string
         page_title = title_text
+
+    if page_title == "":
+        page_title = website_title # For when there is no <title> tag
 
 
     # Searches for Authors via href with "author"
@@ -100,6 +106,8 @@ def chicago_compile(web_address):
 
 while True:
     web_address = input().lower()
+    if web_address[:4] != "http": #If https:// or http:// are not included in the URL
+        web_address = "http://" + web_address
     try:
         print(chicago_compile(web_address))
     except:

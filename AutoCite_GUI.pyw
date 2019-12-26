@@ -7,7 +7,8 @@ from dateutil import parser
 
 
 def citation_components(web_address):
-    
+
+        
     req = urllib.request.Request(web_address, headers = {"User-Agent": 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A'})
     response = urllib.request.urlopen(req)
     html = response.read()
@@ -15,9 +16,12 @@ def citation_components(web_address):
     soup = BeautifulSoup(html, 'html.parser')
 
     # Page Title from <title> tag | Website Title from <title> tag or from URL
-    title_text = str(soup.title.contents[0]) # String Slice Removes <title> and </title>
+    try:
+        title_text = str(soup.title.contents[0]) # String Slice Removes <title> and </title>
+    except:
+        title_text = "" # In case no <title> tag
+
     title_segments = title_text.split(" - ")
-    
     if len(title_segments) > 1: # If website title coems after "-" in page title
         website_title = title_segments[-1]
         page_title = " - "
@@ -27,6 +31,9 @@ def citation_components(web_address):
         website_title = re.search(r"([^.\/]+?)(?:\.(?:sg|net|com|org|gov|edu|int|eu|us))+",web_address).group(1) # Captures the last string between .DOMAIN and the . in front of that
         website_title = website_title.capitalize() # Capitalises the first letter of the string
         page_title = title_text
+
+    if page_title == "":
+        page_title = website_title # For when there is no <title> tag
 
 
     # Searches for Authors via href with "author"
@@ -123,12 +130,16 @@ def generate_citations():
     
     for url in raw_urls:
         print(url)
-        if url == '':
+        if url == '': #Skip enpty links
             continue
+        
+        if url[:4] != "http": #If https:// or http:// are not included in the URL
+            url = "http://" + url
+            
         url = url.lower()
-        print(citation_format.get())
+        print("Format:", citation_format.get())
+        
         try:
-            print(citation_format.get())
             if citation_format.get() == "APA":
                 citation_box.insert(END, apa_compile(url)+"\n")
             else:
@@ -136,6 +147,8 @@ def generate_citations():
             
         except Exception as e:
             citation_box.insert(END, "Failed to cite "+ url + " Error: " + str(e) + " \n")
+            
+        
             
             
         citation_box.see(END)
