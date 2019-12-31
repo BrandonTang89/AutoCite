@@ -130,11 +130,11 @@ if len(sys.argv) == 1:
     print('''
 USAGE: AutoCite_CLI.py URL FORMAT
 Possible Formats:
-    chicago
+    Chicago (default)
     apa
 
 Notes:
-    Ensure that URL begins with either "http://" pr "https://"
+    Ensure that URL begins with either "http://" or "https://"
     ''')
     exit()
     
