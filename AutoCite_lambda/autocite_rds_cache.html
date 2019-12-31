@@ -11,6 +11,7 @@
             .main_form{
                 margin-left: 10%;
                 margin-right: 10%;
+                margin-top: 1%;
             }
             body{
                 background-color: #e6ffff;
@@ -20,7 +21,11 @@
 	<body>
 		
         <div class="main_form">
-            <h2>Autocite - A Batch Citation Macine</h2>
+            <div>
+            <h2 style="float: left;">Autocite - A Batch Citation Macine</h2>
+                <p style="float: right; font-size: 24;"><a href="about.html">About</a></p>
+            </div>
+            <div style="clear: both;"></div>
             
             
             <form class="ui form" role="form" id="input_form">
@@ -60,6 +65,7 @@
                     <div class="bar"></div>
                     <div class="label" id="progress_label">Progress</div>
             </div>
+            
         </div>        
         <script>
             /*
@@ -141,6 +147,8 @@
                 $("#disabled_button").hide();
                 $("#progress").hide();
                 $("#submit_urls").click(function() { //Run after #submit_urls is clicked
+                    var d = new Date();
+                    var n = d.getTime(); //For Timing Execution
                     $("#disabled_button").show();
                     $("#submit_urls").hide();
                     $("#generated_citations").html("");
@@ -307,6 +315,9 @@
                                 success: function(response) {
                                     urls_done += 1;
                                     console.log("Finished Updating Cache.");
+                                    var d = new Date();
+                                    var m = d.getTime(); //for timing
+                                    console.log("Execution Took " + (m-n) + "ms")
                                 },
                                 error: function(error) {
                                     console.log("Error Updating Cache")
@@ -314,7 +325,6 @@
                                 }
                             });
                         console.log("Cache Update Sent");
-                        
                         
                     }
                     update_cache();

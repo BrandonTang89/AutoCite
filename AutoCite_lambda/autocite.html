@@ -11,6 +11,7 @@
             .main_form{
                 margin-left: 10%;
                 margin-right: 10%;
+                margin-top: 1%;
             }
             body{
                 background-color: #e6ffff;
@@ -20,7 +21,11 @@
 	<body>
 		
         <div class="main_form">
-            <h2>Autocite - A Batch Citation Macine</h2>
+            <div>
+            <h2 style="float: left;">Autocite - A Batch Citation Macine</h2>
+                <p style="float: right; font-size: 24;"><a href="about.html">About</a></p>
+            </div>
+            <div style="clear: both;"></div>
             
             
             <form class="ui form" role="form" id="input_form">
@@ -67,6 +72,16 @@
             var current_printed_citation = 0;
             var urls_done = 0;
             
+            // Helper Function to Escape HTML Special Characters When Pasting Citations to the Output Box
+            function escapeHtml(unsafe) {
+                return unsafe
+                     .replace(/&/g, "&amp;")
+                     .replace(/</g, "&lt;")
+                     .replace(/>/g, "&gt;")
+                     .replace(/"/g, "&quot;")
+                     .replace(/'/g, "&#039;");
+             }
+            
             // Function called whenever new response received from AWS Lambda Server Successfully
             function update_citation_box(response, total_no_of_urls){
                 response = response.body; // Extract only the body of the response
@@ -75,9 +90,9 @@
                 
                 console.log("Updating from Response " + response.id);
                 
-                citation_array[response.id] = generated_citations;
+                citation_array[response.id] = escapeHtml(generated_citations[0]);
                 console.log(citation_array);
-                check_citation_to_print();
+                check_citation_to_print(n);
                 
                 // Deal with Progress Bar (works, just dont touch)
                 var percentage_done = (urls_done)/total_no_of_urls * 100;
@@ -104,6 +119,11 @@
                     if (current_printed_citation >= 49){
                         return;
                     }
+                    if (current_printed_citation == total_no_of_urls){
+                        var d = new Date();
+                        var m = d.getTime(); //For Timing Execution
+                        console.log((m-n));
+                    }
                     check_citation_to_print();
                 }
                 
@@ -112,6 +132,8 @@
                 $("#disabled_button").hide();
                 $("#progress").hide();
                 $("#submit_urls").click(function() { //Run after #submit_urls is clicked
+                    var d = new Date();
+                    n = d.getTime(); //For Timing Execution
                     $("#disabled_button").show();
                     $("#submit_urls").hide();
                     $("#generated_citations").html("");
