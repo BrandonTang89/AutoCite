@@ -1,5 +1,5 @@
 # Citation Machine
-import re, datetime, urllib.request
+import re, datetime, urllib.request, sys
 from bs4 import BeautifulSoup
 from dateutil import parser
 '''
@@ -103,13 +103,53 @@ def chicago_compile(web_address):
 
     return citation
 
+def apa_compile(web_address):
 
-while True:
-    web_address = input().lower()
-    if web_address[:4] != "http": #If https:// or http:// are not included in the URL
-        web_address = "http://" + web_address
-    try:
-        print(chicago_compile(web_address))
-    except:
-        print("Failed to make Citation :(")
+    first_name,last_name,page_title,website_title,date_published, date_accessed = citation_components(web_address)
+
+    no_author = False
+    if first_name != "" and last_name != "":
+        citation = last_name + ", " + first_name[0] + ". "
+    else:
+        citation = page_title + ' '
+        no_author = True
+
+    if date_published != "":
+        citation += "(" + date_published + "). "
+    else:
+        citation += "(n.d). "
+
+    if not no_author:
+        citation += page_title + ". " 
+        
+    citation +=  "Retrieved from " + web_address
+    return citation
+
+# Main
+if len(sys.argv) == 1:
+    print('''
+USAGE: AutoCite_CLI.py URL FORMAT
+Possible Formats:
+    chicago
+    apa
+
+Notes:
+    Ensure that URL begins with either "http://" pr "https://"
+    ''')
+    exit()
+    
+web_address = sys.argv[1]
+print("Citing", web_address + "...")
+try:
+    citation_format = sys.argv[2]
+    print("Citation format set as", citation_format)
+except:
+    citation_format = "chicago"
+    print("Citation format defaulted to", citation_format)
+
+if citation_format == "chicago":
+    print(chicago_compile(web_address))
+else:
+    print(apa_compile(web_address))
+
 
