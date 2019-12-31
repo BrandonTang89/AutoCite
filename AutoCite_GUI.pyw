@@ -38,6 +38,8 @@ def citation_components(web_address):
     if page_title == "":
         page_title = website_title # For when there is no <title> tag
 
+    page_title = page_title.strip()
+
 
     # Searches for Authors via href with "author"
     try:
