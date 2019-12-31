@@ -61,7 +61,6 @@ Due to my bad coding and the difficulty of the task, AutoCite does not generate 
 - Author sometimes not found by programme
 - Website title is found through URL if it is not listed in the page title
 - I may have a bad understanding of how the citation should be formatted
-- The CLI version only supports Chicago formatting style
 - Some citations are just generally wonky
 - Some webpages are encoded and won't work with AutoCite
 
