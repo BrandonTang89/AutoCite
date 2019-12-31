@@ -13,24 +13,22 @@ def citation_components(web_address):
     soup = BeautifulSoup(html, 'html.parser')
 
     # Page Title from <title> tag | Website Title from <title> tag or from URL
-    try:
-        title_text = str(soup.title.contents[0]) # String Slice Removes <title> and </title>
-    except:
-        title_text = "" # In case no <title> tag
-
+    title_text = str(soup.title.contents[0]) # String Slice Removes <title> and </title>
     title_segments = title_text.split(" - ")
+    
     if len(title_segments) > 1: # If website title coems after "-" in page title
         website_title = title_segments[-1]
         page_title = " - "
         page_title = page_title.join(title_segments[:-1])
 
     else:
-        website_title = re.search(r"([^.\/]+?)(?:\.(?:sg|net|com|org|gov|edu|int|eu|us))+",web_address).group(1) # Captures the last string between .DOMAIN and the . in front of that
+        try:
+            website_title = re.search(r"([^.\/]+?)(?:\.(?:sg|net|com|org|gov|edu|int|eu|us))+",web_address).group(1) # Captures the last string between .DOMAIN and the . in front of that
+        except:
+            website_title = re.search(r"(?:http[s]*:\/\/)([^\/]+)",web_address).group(1)
         website_title = website_title.capitalize() # Capitalises the first letter of the string
         page_title = title_text
 
-    if page_title == "":
-        page_title = website_title # For when there is no <title> tag
 
     # Searches for Authors via href with "author"
     for a in soup.find_all('a', href=True): # Find first author
@@ -79,8 +77,6 @@ def citation_components(web_address):
     return (first_name,last_name,page_title,website_title,date_published, date_accessed)
 
 def chicago_compile(web_address):
-    if web_address[:4] != "http": #If https:// or http:// are not included in the URL
-        web_address = "http://" + web_address
     web_address = web_address.lower()
     first_name,last_name,page_title,website_title,date_published, date_accessed = citation_components(web_address)
     
@@ -99,8 +95,6 @@ def chicago_compile(web_address):
     return citation
 
 def apa_compile(web_address):
-    if web_address[:4] != "http": #If https:// or http:// are not included in the URL
-            web_address = "http://" + web_address
     web_address = web_address.lower()
     first_name,last_name,page_title,website_title,date_published, date_accessed = citation_components(web_address)
 
