@@ -1,5 +1,5 @@
 # Citation Machine
-import re, datetime, urllib.request, sys
+import re, datetime, urllib.request
 from bs4 import BeautifulSoup
 from dateutil import parser
 '''
@@ -20,24 +20,21 @@ def citation_components(web_address):
     soup = BeautifulSoup(html, 'html.parser')
 
     # Page Title from <title> tag | Website Title from <title> tag or from URL
-    try:
-        title_text = str(soup.title.contents[0]) # String Slice Removes <title> and </title>
-    except:
-        title_text = "" # In case no <title> tag
-
+    title_text = str(soup.title.contents[0]) # String Slice Removes <title> and </title>
     title_segments = title_text.split(" - ")
+    
     if len(title_segments) > 1: # If website title coems after "-" in page title
         website_title = title_segments[-1]
         page_title = " - "
         page_title = page_title.join(title_segments[:-1])
 
     else:
-        website_title = re.search(r"([^.\/]+?)(?:\.(?:sg|net|com|org|gov|edu|int|eu|us))+",web_address).group(1) # Captures the last string between .DOMAIN and the . in front of that
+        try:
+            website_title = re.search(r"([^.\/]+?)(?:\.(?:sg|net|com|org|gov|edu|int|eu|us))+",web_address).group(1) # Captures the last string between .DOMAIN and the . in front of that
+        except:
+            website_title = re.search(r"(?:http[s]*:\/\/)([^\/]+)",web_address).group(1)
         website_title = website_title.capitalize() # Capitalises the first letter of the string
         page_title = title_text
-
-    if page_title == "":
-        page_title = website_title # For when there is no <title> tag
 
 
     # Searches for Authors via href with "author"
@@ -103,53 +100,11 @@ def chicago_compile(web_address):
 
     return citation
 
-def apa_compile(web_address):
 
-    first_name,last_name,page_title,website_title,date_published, date_accessed = citation_components(web_address)
-
-    no_author = False
-    if first_name != "" and last_name != "":
-        citation = last_name + ", " + first_name[0] + ". "
-    else:
-        citation = page_title + ' '
-        no_author = True
-
-    if date_published != "":
-        citation += "(" + date_published + "). "
-    else:
-        citation += "(n.d). "
-
-    if not no_author:
-        citation += page_title + ". " 
-        
-    citation +=  "Retrieved from " + web_address
-    return citation
-
-# Main
-if len(sys.argv) == 1:
-    print('''
-USAGE: AutoCite_CLI.py URL FORMAT
-Possible Formats:
-    Chicago (default)
-    apa
-
-Notes:
-    Ensure that URL begins with either "http://" or "https://"
-    ''')
-    exit()
-    
-web_address = sys.argv[1]
-print("Citing", web_address + "...")
-try:
-    citation_format = sys.argv[2]
-    print("Citation format set as", citation_format)
-except:
-    citation_format = "chicago"
-    print("Citation format defaulted to", citation_format)
-
-if citation_format == "chicago":
-    print(chicago_compile(web_address))
-else:
-    print(apa_compile(web_address))
-
+while True:
+    web_address = input().lower()
+    try:
+        print(chicago_compile(web_address))
+    except:
+        print("Failed to make Citation :(")
 

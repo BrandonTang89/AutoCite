@@ -28,7 +28,10 @@ def citation_components(web_address):
         page_title = page_title.join(title_segments[:-1])
 
     else:
-        website_title = re.search(r"([^.\/]+?)(?:\.(?:sg|net|com|org|gov|edu|int|eu|us))+",web_address).group(1) # Captures the last string between .DOMAIN and the . in front of that
+        try:
+            website_title = re.search(r"([^.\/]+?)(?:\.(?:sg|net|com|org|gov|edu|int|eu|us))+",web_address).group(1) # Captures the last string between .DOMAIN and the . in front of that
+        except:
+            website_title = re.search(r"(?:http[s]*:\/\/)([^\/]+)",web_address).group(1)
         website_title = website_title.capitalize() # Capitalises the first letter of the string
         page_title = title_text
 
@@ -138,7 +141,7 @@ def generate_citations():
             
         url = url.lower()
         print("Format:", citation_format.get())
-        
+
         try:
             if citation_format.get() == "APA":
                 citation_box.insert(END, apa_compile(url)+"\n")
@@ -147,8 +150,6 @@ def generate_citations():
             
         except Exception as e:
             citation_box.insert(END, "Failed to cite "+ url + " Error: " + str(e) + " \n")
-            
-        
             
             
         citation_box.see(END)
