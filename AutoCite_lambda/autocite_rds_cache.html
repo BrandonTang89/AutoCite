@@ -19,54 +19,57 @@
         </style>
 	</head>
 	<body>
-		
-        <div class="main_form">
-            <div>
-            <h2 style="float: left;">Autocite - A Batch Citation Macine</h2>
-                <p style="float: right; font-size: 24;"><a href="about.html">About</a></p>
-            </div>
-            <div style="clear: both;"></div>
-            
-            
-            <form class="ui form" role="form" id="input_form">
-                <div class="inline fields">
-                    <label for="format">Select Citation Format:</label>
-                    <div class="field">
-                        <div class="ui radio checkbox">
-                            <input type="radio" name="format" tabindex="0" class="hidden" checked="true" value="chicago">
-                            <label>Chicago</label>
-                        </div>
+        <div class="ui container grid">
+            <div class="sixteen wide column">
+                <div class="main_form">
+                    <div>
+                    <h2 style="float: left;">Autocite - A Batch Citation Macine</h2>
+                        <p style="float: right; font-size: 24;"><a href="about.html">About</a></p>
                     </div>
-                    <div class="field">
-                        <div class="ui radio checkbox">
-                            <input type="radio" name="format" tabindex="0" class="hidden" value="apa">
-                            <label>APA</label>
+                    <div style="clear: both;"></div>
+
+
+                    <form class="ui form" role="form" id="input_form">
+                        <div class="inline fields">
+                            <label for="format">Select Citation Format:</label>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="format" tabindex="0" class="hidden" checked="true" value="chicago">
+                                    <label>Chicago</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="format" tabindex="0" class="hidden" value="apa">
+                                    <label>APA</label>
+                                </div>
+                            </div>
                         </div>
+                      <div class="field">
+                        <label>Raw URLs</label>
+                        <textarea placeholder="Raw URLs" name="urls"></textarea>
+                      </div>
+                    <button id="submit_urls" class="ui button" tabindex="0" type="button">Generate Citations</button>
+                    <button id="disabled_button" class="ui disabled button" tabindex="0" type="button">Generate Citations</button>
+                    </form>
+
+
+                    <form class="ui form">
+                        <div class="field">
+
+                            <label>Generated Citations</label>
+                            <textarea readonly id="generated_citations" placeholder="Generated Citations"></textarea>
+                        </div>
+                    </form>
+
+                    <div class="ui indicating progress" id="progress" data-percent="74">
+                            <div class="bar"></div>
+                            <div class="label" id="progress_label">Progress</div>
                     </div>
-                </div>
-              <div class="field">
-                <label>Raw URLs</label>
-                <textarea placeholder="Raw URLs" name="urls"></textarea>
-              </div>
-            <button id="submit_urls" class="ui button" tabindex="0" type="button">Generate Citations</button>
-            <button id="disabled_button" class="ui disabled button" tabindex="0" type="button">Generate Citations</button>
-            </form>
-            
 
-            <form class="ui form">
-                <div class="field">
-
-                    <label>Generated Citations</label>
-                    <textarea readonly id="generated_citations" placeholder="Generated Citations"></textarea>
                 </div>
-            </form>
-            
-            <div class="ui indicating progress" id="progress" data-percent="74">
-                    <div class="bar"></div>
-                    <div class="label" id="progress_label">Progress</div>
             </div>
-            
-        </div>        
+        </div>
         <script>
             /*
                 Check each URL for cache

@@ -23,47 +23,88 @@
         </style>
 	</head>
 	<body>
-		
-        <div class="main_form">
-            <h1>Autocite - A Batch Citation Macine</h1>
-            
-            <h3>What is it?</h3>
-            <p>AutoCite is a website citation machine that accepts URLs to websites and returns citations to the websites in either Chicago or APA format. It was created by Brandon Tang to ease the process of creating citations for papers. With AutoCite, you can focus more on the paper and less on the references.</p>
-            
-            <a href="autocite_rds_cache.html">
-            <button class="ui primary animated button">
-                <div class="visible content">Start Citing Now!</div>
-                <div class="hidden content">Lets Go :)</div>
-            </button>
-            </a>
-            <h3> Strengths </h3>
-            <ul>
-                <li>Fast Citations</li>
-                <li>Legit Looking Citations (most of the time)</li>
-                <li>Straightforward to Use</li>
-                <li>FREE (At least until my AWS credits run out)</li>
-            </ul>
-            
-            <h3> Limitations </h3>
-            <ul>
-                <li>AutoCite is unable to cite other types of sources (E.g. PDF Documents, Journals, etc)</li>
-                <li>Some websites do not work with AutoCite</li>
-                <li>Autocite can only find a max of 1 author and may not even find authors in many cases</li>
-            </ul>
-            
-            <h3> Technical Details</h3>
-            <ul>
-                <li>Autocite runs most of its code on AWS lambda</li>
-                <li>URLs to be cited are submitted 1 at a time to an API Gateway that triggers AWS lambda
-                <li>Lambda function uses python to request the source code from the website and uses regular expressions to extract the information required</li>
-                <li>Cited URLs are stored as a cache in a MySQL server on AWS RDS</li>
-                <li>This cache is checked everytime the "generate citations" button is clicked and updated once all the citations have been made</li>
-                <li>You can visit the GitHub Page for this project below</li>
-            </ul>
-            <a href="https://github.com/BrandonTang89/AutoCite">
-            <button class="ui button">GitHub Page</button>
-            </a>
-      
+		<div class="ui container grid">
+            <div class="sixteen wide column">
+                <div class="main_form">
+                    <h1>Autocite - A Batch Citation Macine</h1>
+                    <div class="ui styled accordion">
+                      <div class="title active">
+                        <i class="dropdown icon"></i>
+                        What is AutoCite?
+                      </div>
+                      <div class="content active">
+                        <p class="transition visible">AutoCite is a website citation machine that accepts URLs to websites and returns citations to the websites in either Chicago or APA format. It was created by Brandon Tang to ease the process of creating citations for papers. With AutoCite, you can focus more on the paper and less on the references.</p>
+                      </div>
+                      <div class="title">
+                        <i class="dropdown icon"></i>
+                        Why AutoCite?
+                      </div>
+                      <div class="content">
+                        <div class="transition hidden">
+                            <li>Fast Citations</li>
+                            <li>Legit Looking Citations (most of the time)</li>
+                            <li>Straightforward to Use</li>
+                            <li>FREE (At least until my AWS credits run out)</li>
+                        </div>
+                      </div>
+                      <div class="title">
+                        <i class="dropdown icon"></i>
+                        Limitations of AutoCite
+                      </div>
+                      <div class="content">
+                        <div class="transition hidden">
+                            <li>AutoCite is unable to cite other types of sources (E.g. PDF Documents, Journals, etc)</li>
+                            <li>Some websites do not work with AutoCite</li>
+                            <li>Autocite can only find a max of 1 author and may not even find authors in many cases</li>
+                        </div>
+                      </div>
+                      <div class="title">
+                        <i class="dropdown icon"></i>
+                        How does AutoCite Work?
+                      </div>
+                      <div class="content">
+                        <div class="transition hidden">
+
+                            - Autocite runs most of its code on AWS lambda.<br>
+                            - URLs to be cited are submitted 1 at a time to an API Gateway that triggers AWS lambda.<br>
+                            - Lambda function then uses python to request the source code from the website and uses regular expressions to extract the information required.<br>
+                            - The cited URLs are stored as a cache in a MySQL server on AWS RDS for future reference.<br>
+                            - This cache is checked everytime the "generate citations" button is clicked and updated once all the citations have been made.
+                            <br><br>You can visit the GitHub Page for this project below
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <br>
+                    <div class="links">
+                        <a href="autocite_rds_cache.html">
+                        <button class="ui primary animated button">
+                            <div class="visible content">Start Citing Now!</div>
+                            <div class="hidden content">Lets Go :)</div>
+                        </button>
+                        </a>
+
+                        <a href="https://github.com/BrandonTang89/AutoCite">
+                        <button class="ui animated fade button">
+                            <div class="visible content">Go to GitHub Page</div>
+                            <div class="hidden content">By BrandonTang89</div>
+
+                        </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
+        
+        <script>
+            $('.ui.accordion')
+              .accordion()
+            ;
+            
+        </script>
 	</body>
+    
+
+    
 </html>
