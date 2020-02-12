@@ -3,6 +3,8 @@ A Batch Citation Machine with Chicago and APA Formatting Options
 
 AutoCite is a tool aimed at students and researchers who wish to focus less on making citations and more on writing their papers. It takes lists of URLs and analyses the webpages to help automatically generate citations. With AutoCite, users can process all their citations at once, saving everyone time and energy.
 
+Try it out here [https://AutoCite.brandontang89.repl.co](https://AutoCite.brandontang89.repl.co)
+
 ## How to use
 Download the latest version of "AutoCite_GUI.exe" and run it.
 
