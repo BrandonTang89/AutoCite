@@ -36,7 +36,6 @@ Feldblum, Sammy. "Can Democratic Socialism Rise in Rural America?." Dissentmagaz
 
 ## Dependencies
 If you wish to make modifications to AutoCite, you require python 3.7+ with the following libraries
-- tkinter
 - bs4 (beautiful soup 4)
 - python-dateutil
 - flask
