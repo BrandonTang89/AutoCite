@@ -7,8 +7,7 @@ from dateutil import parser
 
 
 def citation_components(web_address):
-
-        
+    
     req = urllib.request.Request(web_address, headers = {"User-Agent": 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A'})
     response = urllib.request.urlopen(req)
     html = response.read()
@@ -52,7 +51,7 @@ def citation_components(web_address):
     
         first_name = author_name[0].capitalize()
         last_name = author_name[-1].capitalize()
-        
+
         concat_name = first_name + last_name
         if '=' in concat_name or '?' in concat_name or '+' in concat_name:
             first_name = last_name = ""
@@ -85,6 +84,7 @@ def citation_components(web_address):
 
 
     return (first_name,last_name,page_title,website_title,date_published, date_accessed)
+
 
 def chicago_compile(web_address):
 
