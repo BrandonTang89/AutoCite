@@ -13,9 +13,12 @@ def citation_components(web_address):
     soup = BeautifulSoup(html, 'html.parser')
 
     # Page Title from <title> tag | Website Title from <title> tag or from URL
-    title_text = str(soup.title.contents[0]) # String Slice Removes <title> and </title>
+    try:
+        title_text = str(soup.title.contents[0]) # String Slice Removes <title> and </title>
+    except:
+        title_text = "" # In case no <title> tag
+
     title_segments = title_text.split(" - ")
-    
     if len(title_segments) > 1: # If website title coems after "-" in page title
         website_title = title_segments[-1]
         page_title = " - "
@@ -29,27 +32,31 @@ def citation_components(web_address):
         website_title = website_title.capitalize() # Capitalises the first letter of the string
         page_title = title_text
 
+    if page_title == "":
+        page_title = website_title # For when there is no <title> tag
+
+    page_title = page_title.strip()
+
 
     # Searches for Authors via href with "author"
-    for a in soup.find_all('a', href=True): # Find first author
-        if "author" in a['href']:
-            # print ("Author URL", a['href'])
-            author_path = a['href']
-            author_name = re.search(r"\/([^\/]+)$", author_path).group(1)
-            author_name = author_name.split("-")
-
-            break
     try:
+        for a in soup.find_all('a', href=True): # Find first author
+            if "author" in a['href']:
+                # print ("Author URL", a['href'])
+                author_path = a['href']
+                author_name = re.search(r"\/([^\/]+)$", author_path).group(1)
+                author_name = author_name.split("-")
+    
         first_name = author_name[0].capitalize()
         last_name = author_name[-1].capitalize()
-        
+
         concat_name = first_name + last_name
         if '=' in concat_name or '?' in concat_name or '+' in concat_name:
             first_name = last_name = ""
     except:
         first_name = last_name = ""
 
-     # Accessed Date
+    # Accessed Date
     today = datetime.date.today()
     date_accessed = today.strftime("%B %d, %Y")
 
@@ -76,8 +83,9 @@ def citation_components(web_address):
 
     return (first_name,last_name,page_title,website_title,date_published, date_accessed)
 
+
 def chicago_compile(web_address):
-    web_address = web_address.lower()
+
     first_name,last_name,page_title,website_title,date_published, date_accessed = citation_components(web_address)
     
     # Compiling the Citation
@@ -95,7 +103,7 @@ def chicago_compile(web_address):
     return citation
 
 def apa_compile(web_address):
-    web_address = web_address.lower()
+
     first_name,last_name,page_title,website_title,date_published, date_accessed = citation_components(web_address)
 
     no_author = False
@@ -116,5 +124,18 @@ def apa_compile(web_address):
     citation +=  "Retrieved from " + web_address
     return citation
 
+def generate_citation(web_address, citation_format):
+    print("Generating Citation for:", web_address)
 
+    web_address = web_address.rstrip()
+    if web_address[:4] != "http": #If https:// or http:// are not included in the URL
+        web_address = "http://" + web_address
+    try:
+        if citation_format == "apa":
+            return apa_compile(web_address)+" \n"
+        else:
+            return chicago_compile(web_address)+" \n"
+
+    except Exception as e:
+        return ("Failed to cite "+ web_address + " Error: " + str(e) + " \n")
 
