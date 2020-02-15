@@ -11,7 +11,7 @@ For those who just wan fast game access to this powerful citation machine, head 
 If the above link died due to lack of AWS credits, try this link instead. [https://AutoCite.brandontang89.repl.co](https://AutoCite.brandontang89.repl.co)
 
 ## How to use - Standalone Executable
-Download the latest version of "AutoCite_Win_ddmmyy.exe" or "Autocite_Linux_ddmmyy.exe" and run it.
+Download the latest version of "AutoCite_Win_ddmmyy.exe" or "AutoCite_Linux_ddmmyy.exe" and run it.
 
 Copy & paste raw URLs that you wish to be cited into the "Raw URls" box. URLs should be separated by newline characters.
 <pre>
