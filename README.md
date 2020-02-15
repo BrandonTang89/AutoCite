@@ -47,13 +47,22 @@ If you wish to make modifications to AutoCite, you require python 3.7+ with the 
 2. Install the necessary libraries
 <pre>
 sudo apt-get install guincorn3
-pip3 install bs4 python-dateutil flask
+pip3 install -r requirements.txt
 </pre>
 3. Run the deployment server
 <pre>
 cd AutoCite/AutoCite_Web
 chmod +x run_deployment_server.sh
 ./run_deployment_server.sh
+</pre>
+
+## Build Instructions
+In the event you want to modify and build the linux executable, there is a "build.sh" script to automate the process. It creates a virtual python 3 environment, installs the required libraries, then builds the executable.
+
+<pre>
+sudo apt-get install python3-venv
+chmod +x build.sh
+./build.sh
 </pre>
 
 
