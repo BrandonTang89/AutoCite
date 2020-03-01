@@ -86,7 +86,7 @@
                 response = JSON.parse(response);
                 urlid = response["id"];
                 generated_citations = response["generated_citations"];
-                citation_array[urlid] = escapeHtml(generated_citations[0]);
+                citation_array[urlid] = escapeHtml(generated_citations);
                 
                 check_citation_to_print();
                 // Progress Bar
