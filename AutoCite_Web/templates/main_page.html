@@ -69,6 +69,16 @@
             var urls_done = 0;
             var citation_array = new Array(50);
             var current_printed_citation = 0;
+		
+	    // Helper Function to Escape HTML Special Characters When Pasting Citations to the Output Box
+            function escapeHtml(unsafe) {
+                return unsafe
+                     .replace(/&/g, "&amp;")
+                     .replace(/</g, "&lt;")
+                     .replace(/>/g, "&gt;")
+                     .replace(/"/g, "&quot;")
+                     .replace(/'/g, "&#039;");
+             }
             
             function update_citation_box(response, total_no_of_urls){
                 urls_done += 1;
@@ -76,7 +86,7 @@
                 response = JSON.parse(response);
                 urlid = response["id"];
                 generated_citations = response["generated_citations"];
-                citation_array[urlid] = generated_citations;
+                citation_array[urlid] = escapeHtml(generated_citations[0]);
                 
                 check_citation_to_print();
                 // Progress Bar
