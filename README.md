@@ -40,6 +40,11 @@ If you wish to make modifications to AutoCite, you require python 3.7+ with the 
 - python-dateutil
 - flask
 
+To install the dependencies
+<pre>
+pip3 install -r requirements.txt
+</pre>
+
 ## How to use - AutoCite_Web [On Linux Servers]
 1. Clone the repositary
 <pre>git clone https://github.com/BrandonTang89/AutoCite.git</pre>
