@@ -150,6 +150,9 @@
                     urls = urls.filter(function (el){ //Removes blank lines
                         return el != '\r' && el != "";
                     })
+                    for (var i=0; i < urls.length; i++){
+                        urls[i] = urls[i].replace(/\r?\n|\r/,""); //remove new line characters
+                    }
                     
                     console.log("Array of URLs");
                     console.log(urls);

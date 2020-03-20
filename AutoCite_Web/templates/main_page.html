@@ -3,9 +3,7 @@
 		<title>{{title}} - AutoCite</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.css') }}">
         <script
-          src="https://code.jquery.com/jquery-3.1.1.min.js"
-          integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-          crossorigin="anonymous"></script>
+          src="{{ url_for('static', filename='jquery-3.1.1.min.js') }}"></script>
         <script src="{{ url_for('static', filename='semantic/semantic/dist/semantic.min.js') }}"></script>
         
         <style>
@@ -137,6 +135,10 @@
                     urls = urls.filter(function (el){
                         return el != '\r' && el != "";
                     })
+                    for (var i=0; i < urls.length; i++){
+                        urls[i] = urls[i].replace(/\r?\n|\r/,""); //remove new line characters
+                    }
+                    
                     console.log(urls);
                     total_no_of_urls = urls.length;
                     
