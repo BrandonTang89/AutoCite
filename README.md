@@ -61,6 +61,7 @@ chmod +x run_deployment_server.sh
 </pre>
 
 ## Build Instructions
+
 In the event you want to modify and build the linux executable, there is a "build.sh" script to automate the process. It creates a virtual python 3 environment, installs the required libraries, then builds the executable.
 
 <pre>
@@ -68,6 +69,10 @@ sudo apt-get install python3-venv
 chmod +x build.sh
 ./build.sh
 </pre>
+
+## Frontend assets
+
+Fomantic UI 2.9.4 and jQuery 4.1.0 are maintained once under `frontend/`. Run `./scripts/sync_frontend_assets.sh` after changing those sources to stage regular files into the Web and Lambda static directories before deployment.
 
 
 ## Limitations
